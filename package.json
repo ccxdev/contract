@@ -1,0 +1,25 @@
+{
+  "name": "task-contract",
+  "version": "1.0.0",
+  "main": "deploy.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "solc": "^0.5.10",
+    "web3": "^1.7.5"
+  },
+  "devDependencies": {
+    "hardhat": "^2.10.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ccxdev/task-contract.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ccxdev/task-contract/issues"
+  },
+  "homepage": "https://github.com/ccxdev/task-contract#readme",
+  "description": ""
+}
