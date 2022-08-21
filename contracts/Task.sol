@@ -36,17 +36,17 @@ contract Task is Ownable {
         return address(this).balance;
     }
 
-    function getTokenBalance(address target, address _token)
+    function getTokenBalance(address account, address _token)
         public
         view
         returns (uint)
     {
         IERC20 token = IERC20(address(_token));
 
-        return token.balanceOf(target);
+        return token.balanceOf(account);
     }
 
-    function getBalancesByTokens(address target, address[3] memory _tokens)
+    function getBalancesByTokens(address account, address[3] memory _tokens)
         public
         view
         returns (uint256[3] memory)
@@ -54,7 +54,7 @@ contract Task is Ownable {
         uint256[3] memory balances;
 
         for (uint256 i = 0; i < _tokens.length; i++) {
-            uint256 tokenBalance = getTokenBalance(target, _tokens[i]);
+            uint256 tokenBalance = getTokenBalance(account, _tokens[i]);
 
             balances[i] = tokenBalance;
         }

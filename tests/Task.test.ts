@@ -45,12 +45,7 @@ describe('Task', () => {
 	})
 
 	it('Should return token balance', async () => {
-		const { task, owner } = await loadFixture(fixture);
-
-		// Should retern Tether balance
-		console.log(await task.call("0xdAC17F958D2ee523a2206206994597C13D831ec7", owner.address));
-
-		expect(true).to.be.equal(true);
+		// TODO
 	});
 
 	it('Should recieve deposit', async () => {
