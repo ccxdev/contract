@@ -55,7 +55,9 @@ describe("Task", () => {
     it("Should recieve deposit", async () => {
         const { task } = await loadFixture(fixture);
 
-        await expect(task.deposit(100)).to.emit(task, "DepositAccepted").withArgs(99);
+        await expect(task.deposit(100))
+            .to.emit(task, "DepositAccepted")
+            .withArgs(99, (await ethers.provider.getBlock(await ethers.provider.getBlockNumber())).timestamp);
     });
 
     it("Should beneficiary recieve fee", async () => {
