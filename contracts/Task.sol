@@ -11,7 +11,7 @@ contract Task is Ownable {
 
     address payable public beneficiary;
 
-    event DepositAccepted(uint256 amount);
+    event DepositAccepted(uint256 amount, uint when);
     event ComissionSendedToBeneficiary(uint256 comission);
     event BeneficiaryChanged(
         address indexed previousBeneficiary,
@@ -43,7 +43,7 @@ contract Task is Ownable {
     {
         IERC20 token = IERC20(address(_token));
 
-        return token.balanceOf(account);
+        return token.balanceOf(address(account));
     }
 
     function getBalancesByTokens(address account, address[3] memory _tokens)
@@ -77,8 +77,8 @@ contract Task is Ownable {
         uint sendAmount = amount.sub(fee);
 
         uint balance = address(this).balance;
-        balance += sendAmount;
-        emit DepositAccepted(sendAmount);
+        balance = balance.add(sendAmount);
+        emit DepositAccepted(sendAmount, block.timestamp);
 
         beneficiary.transfer(fee);
         emit ComissionSendedToBeneficiary(fee);

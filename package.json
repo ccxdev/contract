@@ -7,18 +7,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^1.0.2"
+    "@nomicfoundation/hardhat-toolbox": "^1.0.2",
+    "eslint": "^8.23.0",
+    "prettier": "^2.7.1",
+    "typescript": "^4.8.2"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.36.2",
+    "@typescript-eslint/parser": "^5.36.2",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "hardhat": "^2.10.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ccxdev/task-contract.git"
-  },
-  "bugs": {
-    "url": "https://github.com/ccxdev/task-contract/issues"
-  },
-  "homepage": "https://github.com/ccxdev/task-contract#readme",
-  "description": ""
+  }
 }
