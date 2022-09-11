@@ -41,5 +41,5 @@ npm i
 ```
 
 ```bash
-npx harhat test tests/Task.test.ts
+npx harhat test tests/Test.test.ts
 ```
