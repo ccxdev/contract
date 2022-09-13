@@ -19,7 +19,7 @@ describe("Task", () => {
 
         const taskWithoutBalance = await Task.deploy(beneficiary.address);
 
-        const response = await (await tokens[0]).transfer(addresses[1].address, 10000);
+        await (await tokens[0]).transfer(addresses[1].address, 10000);
 
         return {
             owner,
@@ -80,12 +80,16 @@ describe("Task", () => {
     });
 
     it("Should return token balances", async () => {
-        // TODO
-        // const { task, tokens, addresses } = await loadFixture(fixture);
-        // const balances = await task.getBalancesByTokens(addresses[0].address, [
-        //     (await tokens[0]).address,
-        // ]);
-        // console.log(balances);
+        const { task, tokens, addresses } = await loadFixture(fixture);
+        const balances = await task.getBalancesByTokens(addresses[1].address, [
+            (await tokens[0]).address,
+            (await tokens[1]).address,
+            (await tokens[2]).address,
+        ]);
+
+        expect(balances[0]).to.eq(10000);
+        expect(balances[1]).to.eq(0);
+        expect(balances[2]).to.eq(0);
     });
 
     it("Should recieve deposit", async () => {

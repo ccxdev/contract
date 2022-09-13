@@ -52,7 +52,7 @@ contract Task is Ownable {
         view
         returns (uint[] memory)
     {
-        uint[] memory balances;
+        uint[] memory balances = new uint[](_tokens.length);
 
         for (uint i = 0; i < _tokens.length; i++) {
             balances[i] = getTokenBalance(account, _tokens[i]);
