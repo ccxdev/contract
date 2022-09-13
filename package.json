@@ -2,7 +2,10 @@
   "name": "task-contract",
   "version": "1.0.0",
   "main": "deploy.js",
-  "scripts": {},
+  "scripts": {
+    "test": "hardhat test ./tests/Test.test.ts",
+    "compile": "hardhat compile"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

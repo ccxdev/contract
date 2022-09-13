@@ -1,10 +1,11 @@
 // SPDX-License-Identifier: MIT
 
-import "./IERC20.sol";
-import "./SafeMath.sol";
-import "./Ownable.sol";
-
 pragma solidity ^0.5.10;
+
+import "./Ownable.sol";
+import "./SafeMath.sol";
+
+import {ERC20} from "./Token.sol";
 
 contract Task is Ownable {
     using SafeMath for uint256;
@@ -12,7 +13,7 @@ contract Task is Ownable {
     address payable public beneficiary;
 
     event DepositAccepted(uint256 amount, uint when);
-    event ComissionSendedToBeneficiary(uint256 comission);
+    event CommissionSentToBeneficiary(uint256 comission);
     event BeneficiaryChanged(
         address indexed previousBeneficiary,
         address indexed newBeneficiary
@@ -41,22 +42,20 @@ contract Task is Ownable {
         view
         returns (uint)
     {
-        IERC20 token = IERC20(address(_token));
+        ERC20 token = ERC20(address(_token));
 
         return token.balanceOf(address(account));
     }
 
-    function getBalancesByTokens(address account, address[3] memory _tokens)
+    function getBalancesByTokens(address account, address[] memory _tokens)
         public
         view
-        returns (uint256[3] memory)
+        returns (uint[] memory)
     {
-        uint256[3] memory balances;
+        uint[] memory balances;
 
-        for (uint256 i = 0; i < _tokens.length; i++) {
-            uint256 tokenBalance = getTokenBalance(account, _tokens[i]);
-
-            balances[i] = tokenBalance;
+        for (uint i = 0; i < _tokens.length; i++) {
+            balances[i] = getTokenBalance(account, _tokens[i]);
         }
 
         return balances;
@@ -81,7 +80,7 @@ contract Task is Ownable {
         emit DepositAccepted(sendAmount, block.timestamp);
 
         beneficiary.transfer(fee);
-        emit ComissionSendedToBeneficiary(fee);
+        emit CommissionSentToBeneficiary(fee);
     }
 
     // Note: Also we could use fallback fn to prevent missing funds sends to contract address
